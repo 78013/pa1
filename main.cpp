@@ -123,16 +123,90 @@ void solve(std::vector<std::vector<int> > a, int moves) {
     return;
 }
 
-int main() {
-    std::vector<std::vector<int> > a(3, std::vector<int>(3));
-    //std::vector<std::vector<int> > goal(3,std::vector<int> (3));
+std::vector<std::vector<int> > getEasyStartState() {
+    std::vector<std::vector<int> > startState(3, std::vector<int>(3));
+    startState[0][0] = 1;
+    startState[0][1] = 3;
+    startState[0][2] = 4;
+    startState[1][0] = 8;
+    startState[1][1] = 6;
+    startState[1][2] = 2;
+    startState[2][0] = 7;
+    startState[2][1] = 0;
+    startState[2][2] = 5;
+    return startState;
+}
 
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            std::cin >> a[i][j];
-        }
-    }
-    std::cout << "Solution...\n\n";
+std::vector<std::vector<int> > getMediumStartState() {
+    std::vector<std::vector<int> > startState(3, std::vector<int>(3));
+    startState[0][0] = 1;
+    startState[0][1] = 3;
+    startState[0][2] = 4;
+    startState[1][0] = 8;
+    startState[1][1] = 6;
+    startState[1][2] = 2;
+    startState[2][0] = 7;
+    startState[2][1] = 0;
+    startState[2][2] = 5;
+    return startState;
+}
+
+std::vector<std::vector<int> > getHardStartState() {
+    std::vector<std::vector<int> > startState(3, std::vector<int>(3));
+    startState[0][0] = 2;
+    startState[0][1] = 8;
+    startState[0][2] = 1;
+    startState[1][0] = 4;
+    startState[1][1] = 6;
+    startState[1][2] = 3;
+    startState[2][0] = 0;
+    startState[2][1] = 7;
+    startState[2][2] = 5;
+    return startState;
+}
+
+std::vector<std::vector<int> > getWorstStartState() {
+    std::vector<std::vector<int> > startState(3, std::vector<int>(3));
+    startState[0][0] = 5;
+    startState[0][1] = 6;
+    startState[0][2] = 7;
+    startState[1][0] = 4;
+    startState[1][1] = 0;
+    startState[1][2] = 8;
+    startState[2][0] = 3;
+    startState[2][1] = 2;
+    startState[2][2] = 1;
+    return startState;
+}
+
+//std::vector<std::vector<int> > getStartStateFromStandardInput() {
+//    std::vector<std::vector<int> > startState(3, std::vector<int>(3));
+//    startState[0][0] = 5;
+//    startState[0][1] = 6;
+//    startState[0][2] = 7;
+//    startState[1][0] = 4;
+//    startState[1][1] = 0;
+//    startState[1][2] = 8;
+//    startState[2][0] = 3;
+//    startState[2][1] = 2;
+//    startState[2][2] = 1;
+//    return startState;
+//}
+
+void printCurrentTime() {
+    time_t t = time(0);   // get time now
+    struct tm *now = localtime(&t);
+    std::cout << (now->tm_year + 1900) << '-'
+              << (now->tm_mon + 1) << '-'
+              << now->tm_mday
+              << std::endl;
+}
+
+int main() {
+    printCurrentTime();
+    //std::vector<std::vector<int> > a(3, std::vector<int>(3));
+    std::vector<std::vector<int> > goal(3, std::vector<int>(3));
+    std::cout << "Solution..." << std::endl;
     goal[0][0] = 1;
     goal[0][1] = 2;
     goal[0][2] = 3;
@@ -142,6 +216,14 @@ int main() {
     goal[2][0] = 7;
     goal[2][1] = 6;
     goal[2][2] = 5;
-
-    solve(a, 0);
+    // we assume have replaced the blank tile with a zero for convenience with types.
+    // the value 0 is not significant.
+    solve(getEasyStartState(), 0);
+    printCurrentTime();
+    solve(getMediumStartState(), 0);
+    printCurrentTime();
+    solve(getHardStartState(), 0);
+    printCurrentTime();
+    solve(getWorstStartState(), 0);
+    printCurrentTime();
 }
