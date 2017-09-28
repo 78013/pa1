@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+#include <string>
+#include <stdio.h>
+#include <time.h>
 
 std::map<std::vector<std::vector<int> >, bool> visited;
 std::map<std::vector<std::vector<int> >, std::vector<std::vector<int> > > parent;
@@ -193,13 +196,18 @@ std::vector<std::vector<int> > getWorstStartState() {
 //    return startState;
 //}
 
+// Get current date/time, format is YYYY-MM-DD.HH:mm:ss
+const std::string currentDateTime() {
+	time_t     now = time(0);
+	struct tm  tstruct;
+	char       buf[80];
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+	return buf;
+}
+
 void printCurrentTime() {
-    time_t t = time(0);   // get time now
-    struct tm *now = localtime(&t);
-    std::cout << (now->tm_year + 1900) << '-'
-              << (now->tm_mon + 1) << '-'
-              << now->tm_mday
-              << std::endl;
+	std::cout << currentDateTime() << std::endl;
 }
 
 int main() {
