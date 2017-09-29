@@ -196,6 +196,21 @@ std::vector<std::vector<int> > getWorstStartState() {
 //    return startState;
 //}
 
+std::vector<std::vector<int> > setEndState() {
+    std::vector<std::vector<int> > goal(3, std::vector<int>(3));
+    std::cout << "Solution..." << std::endl;
+    goal[0][0] = 1;
+    goal[0][1] = 2;
+    goal[0][2] = 3;
+    goal[1][0] = 8;
+    goal[1][1] = 0;
+    goal[1][2] = 4;
+    goal[2][0] = 7;
+    goal[2][1] = 6;
+    goal[2][2] = 5;
+    return goal;
+}
+
 // Get current date/time, format is YYYY-MM-DD.HH:mm:ss
 const std::string currentDateTime() {
 	time_t     now = time(0);
@@ -213,17 +228,7 @@ void printCurrentTime() {
 int main() {
     printCurrentTime();
     //std::vector<std::vector<int> > a(3, std::vector<int>(3));
-    std::vector<std::vector<int> > goal(3, std::vector<int>(3));
-    std::cout << "Solution..." << std::endl;
-    goal[0][0] = 1;
-    goal[0][1] = 2;
-    goal[0][2] = 3;
-    goal[1][0] = 8;
-    goal[1][1] = 0;
-    goal[1][2] = 4;
-    goal[2][0] = 7;
-    goal[2][1] = 6;
-    goal[2][2] = 5;
+    auto goal = setEndState();
     // we assume have replaced the blank tile with a zero for convenience with types.
     // the value 0 is not significant.
     solve(getEasyStartState(), 0);
