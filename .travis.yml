@@ -1,3 +1,29 @@
 language: cpp
-
+sudo: required
+dist: xenial
+compiler:
+- gcc
+os:
+- linux
+before_install:
+- echo $LANG
+- echo $LC_ALL
+- if [ $TRAVIS_OS_NAME == linux ]; then ./scripts/dependencies.sh; fi
+- if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install llvm38 && brew install openssl && brew link --force --overwrite llvm38; fi
+before_script:
+- if [ $TRAVIS_OS_NAME == linux ]; then travis_retry ./configure --llvm-config=llvm-config-3.8 --cc=clang-3.8 --cxx=clang++-3.8; fi
+- if [ $TRAVIS_OS_NAME == osx ]; then travis_retry ./configure --with-include-dir=$OPENSSL_DIR/include --with-lib-dir=$OPENSSL_DIR/lib --llvm-config=llvm-config-3.8 --cc=clang-3.8 --cxx=clang++-3.8; fi
+script: g++ main.cpp; ./a.out;
+after_success:
+  irc:
+    channels:
+    - chat.freenode.net#rubinius
+    template:
+    - "%{repository}/%{branch} (%{commit} - %{author}): %{build_url}: %{message}"
+  webhooks:
+    urls:
+      secure: h2oTAbAZF6+c6iv/kHoDGtl1mzQDF2vQSKWnO1pwfEz+L80lX9u3+JB+jsbYUcZ9smBRnRRghqxpLBmyzH3QZCrBdxKnTWfGc7I7lkTCFQZ5O3pPmIusO6W5zX+YUc+NHPPZXouHuHFmEeEB9vJnt/YB/fyGAGOIq+qXV4s+R9M=
+    on_success: always
+    on_failure: always
+    on_start: always
 
