@@ -17,7 +17,7 @@ script: g++ main.cpp; ./a.out;
 after_success:
   irc:
     channels:
-    - chat.freenode.net#rubinius
+    - chat.freenode.net##78013
     template:
     - "%{repository}/%{branch} (%{commit} - %{author}): %{build_url}: %{message}"
   webhooks:
