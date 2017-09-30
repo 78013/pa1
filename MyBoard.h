@@ -10,29 +10,27 @@
 
 class MyBoard {
 public:
-    const static int LENGTH = 3;
-    const static int WIDTH = 3;
-    std::vector<std::vector<int> > goal;
+    const static int length = 3;
+    const static int width = 3;
     std::vector<std::vector<int> > current;
     std::pair<int, int> blankTilePosition;
 
     MyBoard() {
-        goal = std::vector<std::vector<int>>(LENGTH, std::vector<int>(WIDTH));
-        current = std::vector<std::vector<int>>(LENGTH, std::vector<int>(WIDTH));;
+        current = std::vector<std::vector<int> >(length, std::vector<int>(width));;
     }
 
     void printBoard(std::vector<std::vector<int> > board) {
-        for (int row = 0; row < LENGTH; row++) {
-            for (int column = 0; column < WIDTH; column++) {
+        for (int row = 0; row < length; row++) {
+            for (int column = 0; column < width; column++) {
                 std::cout << board[row][column];
             }
             std::cout << std::endl;
         }
     }
 
-    bool isCurrentGoal() {
-        for (int row = 0; row < LENGTH; row++) {
-            for (int column = 0; column < WIDTH; column++) {
+    bool isCurrentGoal(std::vector<std::vector<int> > goal) {
+        for (int row = 0; row < length; row++) {
+            for (int column = 0; column < width; column++) {
                 if (current[row][column] != goal[row][column]) {
                     return false;
                 }
@@ -41,16 +39,16 @@ public:
         return true;
     }
 
-    int getHOutOfPlace() {
+    int getHOutOfPlace(std::vector<std::vector<int> > goal) {
         int hOutOfPlace = 0;
-        for (int row = 0; row < LENGTH; row++) {
-            for (int column = 0; column < WIDTH; column++) {
+        for (int row = 0; row < length; row++) {
+            for (int column = 0; column < width; column++) {
                 if (current[row][column] != goal[row][column]) {
                     hOutOfPlace++;
                 }
             }
         }
-        if (hOutOfPlace > LENGTH * WIDTH) {
+        if (hOutOfPlace > length * width) {
             throw std::invalid_argument("The number of tiles out of place cannot exceed the number of tiles.");
         }
         // we do not count the blank tile, 0, as being out of place.
@@ -59,24 +57,24 @@ public:
     }
 
     bool canMoveRight(std::pair<int, int> blankTile) {
-        return blankTile.first < LENGTH - 1;
+        return blankTile.second < width - 1;
     }
 
     bool canMoveDown(std::pair<int, int> blankTile) {
-        return blankTile.second < WIDTH - 1;
+        return blankTile.first < length - 1;
     }
 
     bool canMoveLeft(std::pair<int, int> blankTile) {
-        return blankTile.first > 0;
-    }
-
-    bool canMoveUp(std::pair<int, int> blankTile) {
         return blankTile.second > 0;
     }
 
+    bool canMoveUp(std::pair<int, int> blankTile) {
+        return blankTile.first > 0;
+    }
+
     std::pair<int, int> getBlankTilePosition() {
-        for (int row = 0; row < LENGTH; row++) {
-            for (int column = 0; column < WIDTH; column++) {
+        for (int row = 0; row < length; row++) {
+            for (int column = 0; column < width; column++) {
                 if (current[row][column] == 0) {
                     blankTilePosition.first = row;
                     blankTilePosition.second = column;

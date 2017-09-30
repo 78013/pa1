@@ -14,22 +14,25 @@ void printCurrentTime() {
 int main() {
     printCurrentTime();
     MyBoard myBoard;
-    myBoard.goal = {{1, 2, 3},
-                    {8, 0, 4},
-                    {7, 6, 5}};
+    std::vector<std::vector<int> > goal = std::vector<std::vector<int> >(MyBoard::length,
+                                                                         std::vector<int>(MyBoard::width));
+    goal = {{1, 2, 3},
+            {8, 0, 4},
+            {7, 6, 5}};
     myBoard.current = {{1, 3, 4},
                        {8, 6, 2},
-                       {7, 0, 5}};
-    myBoard.printBoard(myBoard.goal);
-    if (!myBoard.isCurrentGoal()) {
+                       {7, 5, 0}};
+    myBoard.printBoard(goal);
+    if (!myBoard.isCurrentGoal(goal)) {
         myBoard.printBoard(myBoard.current);
-        std::cout << myBoard.getHOutOfPlace() << std::endl;
+        std::cout << myBoard.getHOutOfPlace(goal) << std::endl;
     }
     std::pair<int, int> x = myBoard.getBlankTilePosition();
-    std::cout << "first: " + x.first << std::endl;
-    std::cout << "second: " + x.second << std::endl;
+    std::cout << "The value of p2 is "
+              << "(" << x.first << ", " << x.second << ")"
+              << std::endl;
     if (myBoard.canMoveDown(myBoard.getBlankTilePosition())) {
         std::cout << "this should  not happen with the current code" << std::endl;
-    }
+    } else { std::cout << "looks good to me" << std::endl; }
     printCurrentTime();
 }
