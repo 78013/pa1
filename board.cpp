@@ -30,9 +30,34 @@ public:
 		}
 		return false;
 	}
+	bool isSolved(std::vector<std::vector<int> > solvedBoard)
+	{
+		for(int i = 0; i < DIMENSION; i++)
+		{
+			for(int j = 0; j < DIMENSION; j++)
+			{
+				if(currentBoard[i] != solvedBoard[i])
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	void printBoard()
+	{
+		for(int i = 0; i < DIMENSION; i++)
+		{
+			for(int j = 0; j < DIMENSION; j++)
+			{
+				std::cout << currentBoard[i][j];
+			}
+			std::cout << std::endl;
+		}
+	}
+				
 private:
 	const int DIMENSION = 3;
 	std::vector<std::vector<int> > currentBoard;
-
 };
 
