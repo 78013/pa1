@@ -14,6 +14,7 @@ public:
     const static int WIDTH = 3;
     std::vector<std::vector<int> > goal;
     std::vector<std::vector<int> > current;
+    std::pair<int, int> blankTilePosition;
 
     MyBoard() {
         goal = std::vector<std::vector<int>>(LENGTH, std::vector<int>(WIDTH));
@@ -55,6 +56,34 @@ public:
         // we do not count the blank tile, 0, as being out of place.
         // this should not affect our calculation.
         return hOutOfPlace - 1;
+    }
+
+    bool canMoveRight(std::pair<int, int> blankTile) {
+        return blankTile.first < LENGTH - 1;
+    }
+
+    bool canMoveDown(std::pair<int, int> blankTile) {
+        return blankTile.second < WIDTH - 1;
+    }
+
+    bool canMoveLeft(std::pair<int, int> blankTile) {
+        return blankTile.first > 0;
+    }
+
+    bool canMoveUp(std::pair<int, int> blankTile) {
+        return blankTile.second > 0;
+    }
+
+    std::pair<int, int> getBlankTilePosition() {
+        for (int row = 0; row < LENGTH; row++) {
+            for (int column = 0; column < WIDTH; column++) {
+                if (current[row][column] == 0) {
+                    blankTilePosition.first = row;
+                    blankTilePosition.second = column;
+                    return blankTilePosition;
+                }
+            }
+        }
     }
 };
 
