@@ -2,7 +2,7 @@ language: cpp
 sudo: required
 dist: xenial
 compiler:
-- gcc
+- gcc-7
 os:
 - linux
 before_install:
