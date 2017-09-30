@@ -231,7 +231,8 @@ int main() {
     myBoard.current = {{1, 3, 4},
                        {8, 6, 2},
                        {7, 0, 5}};
-    myBoard.printGoalBoard();
+    myBoard.printBoard(myBoard.goal);
+    if (!myBoard.isCurrentGoal()) { myBoard.printBoard(myBoard.current); }
     printCurrentTime();
     //std::vector<std::vector<int> > a(3, std::vector<int>(3));
     // auto goal = setEndState();

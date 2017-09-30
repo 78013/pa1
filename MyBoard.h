@@ -20,13 +20,24 @@ public:
         current = std::vector<std::vector<int>>(LENGTH, std::vector<int>(WIDTH));;
     }
 
-    void printGoalBoard() {
+    void printBoard(std::vector<std::vector<int> > board) {
         for (int row = 0; row < LENGTH; row++) {
             for (int column = 0; column < WIDTH; column++) {
-                std::cout << goal[row][column];
+                std::cout << board[row][column];
             }
             std::cout << std::endl;
         }
+    }
+
+    bool isCurrentGoal() {
+        for (int row = 0; row < LENGTH; row++) {
+            for (int column = 0; column < WIDTH; column++) {
+                if (current[row][column] != goal[row][column]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 };
 
