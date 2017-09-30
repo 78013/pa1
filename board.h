@@ -55,9 +55,8 @@ public:
 			std::cout << std::endl;
 		}
 	}
-				
 private:
 	const int DIMENSION = 3;
-	std::vector<std::vector<int> > currentBoard;
+	std::vector<std::vector<int> > currentBoard(3, std::vector<std::vector<3> );
 };
 
