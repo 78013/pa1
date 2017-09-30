@@ -232,7 +232,10 @@ int main() {
                        {8, 6, 2},
                        {7, 0, 5}};
     myBoard.printBoard(myBoard.goal);
-    if (!myBoard.isCurrentGoal()) { myBoard.printBoard(myBoard.current); }
+    if (!myBoard.isCurrentGoal()) {
+        myBoard.printBoard(myBoard.current);
+        std::cout << myBoard.getHOutOfPlace() << std::endl;
+    }
     printCurrentTime();
     //std::vector<std::vector<int> > a(3, std::vector<int>(3));
     // auto goal = setEndState();

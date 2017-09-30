@@ -39,6 +39,23 @@ public:
         }
         return true;
     }
+
+    int getHOutOfPlace() {
+        int hOutOfPlace = 0;
+        for (int row = 0; row < LENGTH; row++) {
+            for (int column = 0; column < WIDTH; column++) {
+                if (current[row][column] != goal[row][column]) {
+                    hOutOfPlace++;
+                }
+            }
+        }
+        if (hOutOfPlace > LENGTH * WIDTH) {
+            throw std::invalid_argument("The number of tiles out of place cannot exceed the number of tiles.");
+        }
+        // we do not count the blank tile, 0, as being out of place.
+        // this should not affect our calculation.
+        return hOutOfPlace - 1;
+    }
 };
 
 #endif //PA1_BOARD_H
