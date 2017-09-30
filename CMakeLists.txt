@@ -3,5 +3,5 @@ project(pa1)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp MyBoard.h)
 add_executable(pa1 ${SOURCE_FILES})
