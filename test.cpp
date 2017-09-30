@@ -1,5 +1,5 @@
 #include <iostream>
-#include "board.cpp"
+#include "board.h"
 
 int main()
 {
