@@ -10,7 +10,10 @@ before_install:
 - echo $LC_ALL
 before_script:
 - echo "hello";
-script: g++ main.cpp; ./a.out;
+script:
+- g++ --version
+- g++ main.cpp
+- ./a.out;
 after_success:
   irc:
     channels:
