@@ -36,5 +36,6 @@ int main() {
     if (initialNode.myBoard.canMoveDown(initialNode.myBoard.getBlankTilePosition())) {
         std::cout << "this should  not happen with the current code" << std::endl;
     } else { std::cout << "LGTM: looks good to me" << std::endl; }
-    printCurrentTime();
+    if (initialNode.myBoard.canMoveUp(initialNode.myBoard.getBlankTilePosition()))
+        printCurrentTime();
 }

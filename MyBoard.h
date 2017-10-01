@@ -13,10 +13,9 @@ public:
     const static int length = 3;
     const static int width = 3;
     std::vector<std::vector<int> > current;
-    std::pair<int, int> blankTilePosition;
 
     MyBoard() {
-        current = std::vector<std::vector<int> >(length, std::vector<int>(width));;
+        current = std::vector<std::vector<int> >(length, std::vector<int>(width));
     }
 
     void printBoard(std::vector<std::vector<int> > board) {
@@ -73,6 +72,7 @@ public:
     }
 
     std::pair<int, int> getBlankTilePosition() {
+        std::pair<int, int> blankTilePosition;
         for (int row = 0; row < length; row++) {
             for (int column = 0; column < width; column++) {
                 if (current[row][column] == 0) {
@@ -85,7 +85,7 @@ public:
     }
 
     std::vector<std::vector<int> > moveUp() {
-        blankTilePosition = getBlankTilePosition();
+        std::pair<int, int> blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
         if (canMoveUp(blankTilePosition)) {
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
@@ -95,9 +95,9 @@ public:
     }
 
     std::vector<std::vector<int> > moveDown() {
-        blankTilePosition = getBlankTilePosition();
+        std::pair<int, int> blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
-        if (canMoveUp(blankTilePosition)) {
+        if (canMoveDown(blankTilePosition)) {
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
                       current[blankTilePosition.first][blankTilePosition.second + 1]);
         }
@@ -105,9 +105,9 @@ public:
     }
 
     std::vector<std::vector<int> > moveLeft() {
-        blankTilePosition = getBlankTilePosition();
+        std::pair<int, int> blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
-        if (canMoveUp(blankTilePosition)) {
+        if (canMoveLeft(blankTilePosition)) {
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
                       current[blankTilePosition.first - 1][blankTilePosition.second]);
         }
@@ -115,9 +115,9 @@ public:
     }
 
     std::vector<std::vector<int> > moveRight() {
-        blankTilePosition = getBlankTilePosition();
+        std::pair<int, int> blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
-        if (canMoveUp(blankTilePosition)) {
+        if (canMoveRight(blankTilePosition)) {
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
                       current[blankTilePosition.first + 1][blankTilePosition.second]);
         }
