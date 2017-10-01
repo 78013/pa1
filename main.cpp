@@ -23,6 +23,8 @@ int main() {
     initialNode.myBoard.current = {{1, 3, 4},
                                    {8, 6, 2},
                                    {7, 5, 0}};
+    std::vector<std::vector<int> > mine = initialNode.myBoard.current;
+    int reddit = initialNode.myBoard.getHOutOfPlace(mine);
     std::cout << "my initial f cost is " << initialNode.myBoard.getHOutOfPlace(initialNode.myBoard.current)
               << std::endl;
     initialNode.myBoard.printBoard(goal);
