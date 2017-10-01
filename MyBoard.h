@@ -107,10 +107,11 @@ public:
     std::vector<std::vector<int>> moveTo(Direction direction) {
         std::pair<int, int> blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard(length, std::vector<int>(width));
+        movedBoard = current;
         if (canMoveTo(blankTilePosition, direction)) {
             auto targetPosition = shiftTile(getBlankTilePosition(), direction);
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
-                      current[targetPosition.first][targetPosition.second]);
+                      movedBoard[targetPosition.first][targetPosition.second]);
         }
         return movedBoard;
     }
