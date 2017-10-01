@@ -15,7 +15,7 @@ before_script:
   - g++ --version
 
 script:
-  - g++ main.cpp -o main
+  - g++ -std=c++17 main.cpp -o main
   - ./main
-  - g++ treetest.cpp -o tree
+  - g++ -std=c++17 treetest.cpp -o tree
   - ./tree

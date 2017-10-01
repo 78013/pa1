@@ -17,7 +17,7 @@ public:
 
     MyBoard myBoard;
 
-    int getFCost(std::vector<std::vector<int> > goal) {
+    int getFCost(std::vector<std::vector<int>> goal) {
         return myBoard.getHOutOfPlace(std::move(goal));
     }
 

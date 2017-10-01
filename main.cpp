@@ -15,8 +15,8 @@ void printCurrentTime() {
 int main() {
     printCurrentTime();
     MyNode initialNode;
-    std::vector<std::vector<int> > goal = std::vector<std::vector<int> >(MyBoard::length,
-                                                                         std::vector<int>(MyBoard::width));
+    std::vector<std::vector<int>> goal = std::vector<std::vector<int>>(MyBoard::length,
+                                                                       std::vector<int>(MyBoard::width));
     goal = {{1, 2, 3},
             {8, 0, 4},
             {7, 6, 5}};
@@ -36,6 +36,9 @@ int main() {
     if (initialNode.myBoard.canMoveDown(initialNode.myBoard.getBlankTilePosition())) {
         std::cout << "this should  not happen with the current code" << std::endl;
     } else { std::cout << "LGTM: looks good to me" << std::endl; }
-    if (initialNode.myBoard.canMoveUp(initialNode.myBoard.getBlankTilePosition()))
+    if (initialNode.myBoard.canMoveUp(initialNode.myBoard.getBlankTilePosition())) {
+        std::vector<std::vector<int>> newBoard = initialNode.myBoard.moveUp();
+        initialNode.myBoard.printBoard(newBoard);
+    }
         printCurrentTime();
 }
