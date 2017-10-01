@@ -5,7 +5,8 @@
 #ifndef PA1_MYNODE_H
 #define PA1_MYNODE_H
 
-
+#include <utility>
+#include <vector>
 #include "MyBoard.h"
 
 class MyNode {
@@ -13,10 +14,11 @@ public:
     MyNode() {
         gCost = 0;
     }
+
     MyBoard myBoard;
 
-    int getFCost() {
-        return myBoard.getHOutOfPlace(myBoard.current);
+    int getFCost(std::vector<std::vector<int> > goal) {
+        return myBoard.getHOutOfPlace(std::move(goal));
     }
 
     int getGCost() {

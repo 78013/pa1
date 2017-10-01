@@ -83,6 +83,46 @@ public:
             }
         }
     }
+
+    std::vector<std::vector<int> > moveUp() {
+        blankTilePosition = getBlankTilePosition();
+        std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
+        if (canMoveUp(blankTilePosition)) {
+            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
+                      current[blankTilePosition.first][blankTilePosition.second - 1]);
+        }
+        return movedBoard;
+    }
+
+    std::vector<std::vector<int> > moveDown() {
+        blankTilePosition = getBlankTilePosition();
+        std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
+        if (canMoveUp(blankTilePosition)) {
+            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
+                      current[blankTilePosition.first][blankTilePosition.second + 1]);
+        }
+        return movedBoard;
+    }
+
+    std::vector<std::vector<int> > moveLeft() {
+        blankTilePosition = getBlankTilePosition();
+        std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
+        if (canMoveUp(blankTilePosition)) {
+            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
+                      current[blankTilePosition.first - 1][blankTilePosition.second]);
+        }
+        return movedBoard;
+    }
+
+    std::vector<std::vector<int> > moveRight() {
+        blankTilePosition = getBlankTilePosition();
+        std::vector<std::vector<int> > movedBoard = std::vector<std::vector<int> >(length, std::vector<int>(width));
+        if (canMoveUp(blankTilePosition)) {
+            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
+                      current[blankTilePosition.first + 1][blankTilePosition.second]);
+        }
+        return movedBoard;
+    }
 };
 
 #endif //PA1_BOARD_H

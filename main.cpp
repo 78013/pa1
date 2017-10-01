@@ -31,7 +31,7 @@ int main() {
     std::cout << "The value of p2 is "
               << "(" << x.first << ", " << x.second << ")"
               << std::endl;
-    std::cout << "my initial f cost is " << initialNode.myBoard.getHOutOfPlace(goal)
+    std::cout << "my initial f cost is " << initialNode.getFCost(goal)
               << std::endl;
     if (initialNode.myBoard.canMoveDown(initialNode.myBoard.getBlankTilePosition())) {
         std::cout << "this should  not happen with the current code" << std::endl;
