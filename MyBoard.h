@@ -61,8 +61,7 @@ public:
         for (int row = 0; row < length; row++) {
             for (int column = 0; column < width; column++) {
                 if (current[row][column] == 0) {
-                    blankTilePosition.first = row;
-                    blankTilePosition.second = column;
+                    blankTilePosition = std::make_pair(row, column);
                     return blankTilePosition;
                 }
             }
@@ -73,23 +72,19 @@ public:
         std::pair<int, int> newTilePosition;
         switch (direction) {
             case Direction::left:
-                newTilePosition.first = blankTilePosition.first;
-                newTilePosition.second = blankTilePosition.second - 1;
+                newTilePosition = std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
                 return newTilePosition;
 //                return std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
             case Direction::right:
-                newTilePosition.first = blankTilePosition.first;
-                newTilePosition.second = blankTilePosition.second + 1;
+                newTilePosition = std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
                 return newTilePosition;
 //                return std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
             case Direction::up:
-                newTilePosition.first = blankTilePosition.first - 1;
-                newTilePosition.second = blankTilePosition.second;
+                newTilePosition = std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
                 return newTilePosition;
 //                return std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
             case Direction::down:
-                newTilePosition.first = blankTilePosition.first + 1;
-                newTilePosition.second = blankTilePosition.second;
+                newTilePosition = std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
                 return newTilePosition;
 //                return std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
         }
