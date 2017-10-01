@@ -23,18 +23,15 @@ int main() {
     initialNode.myBoard.current = {{1, 3, 4},
                                    {8, 6, 2},
                                    {7, 5, 0}};
-    std::vector<std::vector<int> > mine = initialNode.myBoard.current;
-    int reddit = initialNode.myBoard.getHOutOfPlace(mine);
-    std::cout << "my initial f cost is " << initialNode.myBoard.getHOutOfPlace(initialNode.myBoard.current)
-              << std::endl;
     initialNode.myBoard.printBoard(goal);
     if (!initialNode.myBoard.isCurrentGoal(goal)) {
         initialNode.myBoard.printBoard(initialNode.myBoard.current);
-        std::cout << initialNode.myBoard.getHOutOfPlace(goal) << std::endl;
     }
     std::pair<int, int> x = initialNode.myBoard.getBlankTilePosition();
     std::cout << "The value of p2 is "
               << "(" << x.first << ", " << x.second << ")"
+              << std::endl;
+    std::cout << "my initial f cost is " << initialNode.myBoard.getHOutOfPlace(goal)
               << std::endl;
     if (initialNode.myBoard.canMoveDown(initialNode.myBoard.getBlankTilePosition())) {
         std::cout << "this should  not happen with the current code" << std::endl;
