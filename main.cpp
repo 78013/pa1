@@ -33,11 +33,11 @@ int main() {
               << std::endl;
     std::cout << "my initial f cost is " << initialNode.getFCost(goal)
               << std::endl;
-    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction:down)) {
+    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::down)) {
         std::cout << "this should  not happen with the current code" << std::endl;
     } else { std::cout << "LGTM: looks good to me" << std::endl; }
     if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::up)) {
-        std::vector<std::vector<int>> newBoard = initialNode.myBoard.moveUp();
+        std::vector<std::vector<int>> newBoard = initialNode.myBoard.moveTo(Direction::up);
         initialNode.myBoard.printBoard(newBoard);
     }
         printCurrentTime();

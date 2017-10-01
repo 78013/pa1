@@ -7,15 +7,10 @@
 
 #include <iostream>
 #include <vector>
+#include "Direction.h"
 
 class MyBoard {
 public:
-    enum class Direction {
-        left,
-        right,
-        down,
-        up
-    };
     const static int length = 3;
     const static int width = 3;
     std::vector<std::vector<int>> current;
