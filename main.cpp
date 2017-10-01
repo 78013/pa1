@@ -20,9 +20,11 @@ int main() {
     goal = {{1, 2, 3},
             {8, 0, 4},
             {7, 6, 5}};
+    std::cout << "my initial f cost is " << initialNode.getFCost() << std::endl;
     initialNode.myBoard.current = {{1, 3, 4},
                                    {8, 6, 2},
                                    {7, 5, 0}};
+    std::cout << "my initial f cost is " << initialNode.getFCost() << std::endl;
     initialNode.myBoard.printBoard(goal);
     if (!initialNode.myBoard.isCurrentGoal(goal)) {
         initialNode.myBoard.printBoard(initialNode.myBoard.current);
@@ -34,6 +36,6 @@ int main() {
               << std::endl;
     if (initialNode.myBoard.canMoveDown(initialNode.myBoard.getBlankTilePosition())) {
         std::cout << "this should  not happen with the current code" << std::endl;
-    } else { std::cout << "looks good to me" << std::endl; }
+    } else { std::cout << "LGTM: looks good to me" << std::endl; }
     printCurrentTime();
 }

@@ -10,8 +10,25 @@
 
 class MyNode {
 public:
+    MyNode() {
+        gCost = 0;
+    }
     MyBoard myBoard;
 
+    int getFCost() {
+        return myBoard.getHOutOfPlace(myBoard.current);
+    }
+
+    int getGCost() {
+        return gCost;
+    }
+
+    void setGCost(int input) {
+        gCost = input;
+    }
+
+private:
+    int gCost;
 };
 
 
