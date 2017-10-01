@@ -9,6 +9,7 @@
 #include "MyBoard.h"
 
 class MyNode {
+public:
     MyBoard myBoard;
 
 };
