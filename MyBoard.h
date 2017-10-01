@@ -10,6 +10,12 @@
 
 class MyBoard {
 public:
+    enum class Direction {
+        left,
+        right,
+        down,
+        up
+    };
     const static int length = 3;
     const static int width = 3;
     std::vector<std::vector<int>> current;
@@ -55,22 +61,6 @@ public:
         return hOutOfPlace - 1;
     }
 
-    bool canMoveRight(std::pair<int, int> blankTile) {
-        return blankTile.second < width - 1;
-    }
-
-    bool canMoveDown(std::pair<int, int> blankTile) {
-        return blankTile.first < length - 1;
-    }
-
-    bool canMoveLeft(std::pair<int, int> blankTile) {
-        return blankTile.second > 0;
-    }
-
-    bool canMoveUp(std::pair<int, int> blankTile) {
-        return blankTile.first > 0;
-    }
-
     std::pair<int, int> getBlankTilePosition() {
         std::pair<int, int> blankTilePosition;
         for (int row = 0; row < length; row++) {
@@ -84,42 +74,36 @@ public:
         }
     }
 
-    std::vector<std::vector<int>> moveUp() {
-        std::pair<int, int> blankTilePosition = getBlankTilePosition();
-        std::vector<std::vector<int>> movedBoard = current;
-        if (canMoveUp(blankTilePosition)) {
-            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
-                      current[blankTilePosition.first][blankTilePosition.second - 1]);
+    std::pair<int, int> shiftTile(std::pair<int, int> tilePosition, Direction direction) {
+        switch (direction) {
+            std::pair<int, int> blankTilePosition = getBlankTilePosition();
+            case Direction::left:
+                return std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
+            case Direction::right:
+                return std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
+            case Direction::up:
+                return std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
+            case Direction::down:
+                return std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
         }
-        return movedBoard;
     }
 
-    std::vector<std::vector<int>> moveDown() {
-        std::pair<int, int> blankTilePosition = getBlankTilePosition();
-        std::vector<std::vector<int>> movedBoard = current;
-        if (canMoveDown(blankTilePosition)) {
-            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
-                      current[blankTilePosition.first][blankTilePosition.second + 1]);
-        }
-        return movedBoard;
+    bool canMoveTo(std::pair<int, int> blankTile, Direction direction) {
+        blankTile = shiftTile(blankTile, direction);
+        return
+                blankTile.first >= 0 &&
+                blankTile.second >= 0 &&
+                blankTile.first < length &&
+                blankTile.second < width;
     }
 
-    std::vector<std::vector<int>> moveLeft() {
+    std::vector<std::vector<int>> moveTo(Direction direction) {
         std::pair<int, int> blankTilePosition = getBlankTilePosition();
-        std::vector<std::vector<int>> movedBoard = current;
-        if (canMoveLeft(blankTilePosition)) {
+        std::vector<std::vector<int> > movedBoard(length, std::vector<int>(width));
+        if (canMoveTo(blankTilePosition, direction)) {
+            auto targetPosition = moveTo(direction);
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
-                      current[blankTilePosition.first - 1][blankTilePosition.second]);
-        }
-        return movedBoard;
-    }
-
-    std::vector<std::vector<int>> moveRight() {
-        std::pair<int, int> blankTilePosition = getBlankTilePosition();
-        std::vector<std::vector<int>> movedBoard = current;
-        if (canMoveRight(blankTilePosition)) {
-            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
-                      current[blankTilePosition.first + 1][blankTilePosition.second]);
+                      current[targetPosition.first][targetPosition.second]);
         }
         return movedBoard;
     }
