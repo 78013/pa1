@@ -69,17 +69,29 @@ public:
         }
     }
 
-    std::pair<int, int> shiftTile(std::pair<int, int> tilePosition, Direction direction) {
+    std::pair<int, int> shiftTile(std::pair<int, int> blankTilePosition, Direction direction) {
+        std::pair<int, int> newTilePosition;
         switch (direction) {
-            std::pair<int, int> blankTilePosition = getBlankTilePosition();
             case Direction::left:
-                return std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
+                newTilePosition.first = blankTilePosition.first;
+                newTilePosition.second = blankTilePosition.second - 1;
+                return newTilePosition;
+//                return std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
             case Direction::right:
-                return std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
+                newTilePosition.first = blankTilePosition.first;
+                newTilePosition.second = blankTilePosition.second + 1;
+                return newTilePosition;
+//                return std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
             case Direction::up:
-                return std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
+                newTilePosition.first = blankTilePosition.first - 1;
+                newTilePosition.second = blankTilePosition.second;
+                return newTilePosition;
+//                return std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
             case Direction::down:
-                return std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
+                newTilePosition.first = blankTilePosition.first + 1;
+                newTilePosition.second = blankTilePosition.second;
+                return newTilePosition;
+//                return std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
         }
     }
 
@@ -96,7 +108,7 @@ public:
         std::pair<int, int> blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard(length, std::vector<int>(width));
         if (canMoveTo(blankTilePosition, direction)) {
-            auto targetPosition = moveTo(direction);
+            auto targetPosition = shiftTile(getBlankTilePosition(), direction);
             std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
                       current[targetPosition.first][targetPosition.second]);
         }
