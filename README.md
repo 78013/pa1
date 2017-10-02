@@ -1,5 +1,15 @@
 [![Build Status](https://travis-ci.org/78013/pa1.svg?branch=master)](https://travis-ci.org/78013/pa1) 
 
+You can build this program with gcc 7+ 
+
+* g++ -std=c++17 main.cpp -o main.out 
+
+You can run this program by executing the resulting out file  
+
+* ./main.out
+
+
+
 ```main cpp
 
 #include <string>
