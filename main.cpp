@@ -36,9 +36,9 @@ int main() {
     if (!initialNode.myBoard.isSolved(goal)) {
         initialNode.myBoard.printBoard(initialNode.myBoard.current);
     }
-    std::pair<int, int> x = initialNode.myBoard.getBlankTilePosition();
+    TilePosition x = initialNode.myBoard.getBlankTilePosition();
     std::cout << "The value of p2 is "
-              << "(" << x.first << ", " << x.second << ")"
+              << "(" << x.row << ", " << x.column << ")"
               << std::endl;
     std::cout << "my initial f cost is " << initialNode.getFCost(goal)
               << std::endl;

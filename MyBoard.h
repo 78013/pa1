@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "Direction.h"
+#include "TilePosition.h"
 
 class MyBoard {
 public:
@@ -56,57 +57,50 @@ public:
         return hOutOfPlace - 1;
     }
 
-    std::pair<int, int> getBlankTilePosition() {
-        std::pair<int, int> blankTilePosition;
+    TilePosition getBlankTilePosition() {
         for (int row = 0; row < length; row++) {
             for (int column = 0; column < width; column++) {
                 if (current[row][column] == 0) {
-                    blankTilePosition = std::make_pair(row, column);
-                    return blankTilePosition;
+                    return TilePosition(row, column);
                 }
             }
         }
     }
 
-    std::pair<int, int> shiftTile(std::pair<int, int> blankTilePosition, Direction direction) {
-        std::pair<int, int> newTilePosition;
+    TilePosition shiftTile(TilePosition blankTilePosition, Direction direction) {
         switch (direction) {
             case Direction::left:
-                newTilePosition = std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
-                return newTilePosition;
-//                return std::make_pair(blankTilePosition.first, blankTilePosition.second - 1);
+                return TilePosition(blankTilePosition.row, blankTilePosition.column - 1);
+//                return std::make_pair(blankTilePosition.row, blankTilePosition.column - 1);
             case Direction::right:
-                newTilePosition = std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
-                return newTilePosition;
-//                return std::make_pair(blankTilePosition.first, blankTilePosition.second + 1);
+                return TilePosition(blankTilePosition.row, blankTilePosition.column + 1);
+//                return std::make_pair(blankTilePosition.row, blankTilePosition.column + 1);
             case Direction::up:
-                newTilePosition = std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
-                return newTilePosition;
-//                return std::make_pair(blankTilePosition.first - 1, blankTilePosition.second);
+                return TilePosition(blankTilePosition.row - 1, blankTilePosition.column);
+//                return std::make_pair(blankTilePosition.row - 1, blankTilePosition.column);
             case Direction::down:
-                newTilePosition = std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
-                return newTilePosition;
-//                return std::make_pair(blankTilePosition.first + 1, blankTilePosition.second);
+                return TilePosition(blankTilePosition.row + 1, blankTilePosition.column);
+//                return std::make_pair(blankTilePosition.row + 1, blankTilePosition.column);
         }
     }
 
-    bool canMoveTo(std::pair<int, int> blankTile, Direction direction) {
+    bool canMoveTo(TilePosition blankTile, Direction direction) {
         blankTile = shiftTile(blankTile, direction);
         return
-                blankTile.first >= 0 &&
-                blankTile.second >= 0 &&
-                blankTile.first < length &&
-                blankTile.second < width;
+                blankTile.row >= 0 &&
+                blankTile.column >= 0 &&
+                blankTile.row < length &&
+                blankTile.column < width;
     }
 
     std::vector<std::vector<int>> moveTo(Direction direction) {
-        std::pair<int, int> blankTilePosition = getBlankTilePosition();
+        TilePosition blankTilePosition = getBlankTilePosition();
         std::vector<std::vector<int> > movedBoard(length, std::vector<int>(width));
         movedBoard = current;
         if (canMoveTo(blankTilePosition, direction)) {
             auto targetPosition = shiftTile(getBlankTilePosition(), direction);
-            std::swap(movedBoard[blankTilePosition.first][blankTilePosition.second],
-                      movedBoard[targetPosition.first][targetPosition.second]);
+            std::swap(movedBoard[blankTilePosition.row][blankTilePosition.column],
+                      movedBoard[targetPosition.row][targetPosition.column]);
         }
         return movedBoard;
     }
