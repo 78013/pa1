@@ -19,3 +19,5 @@ script:
   - ./main.out
   - g++ -std=c++17 treetest.cpp -o tree.out
   - ./tree.out
+  - g++ -std=c++17 EightPuzzle.cpp -o eight.out
+  - ./eight.out

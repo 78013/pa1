@@ -3,5 +3,5 @@ project(pa1)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES main.cpp MyBoard.h MyNode.h tree.hh Direction.h MyTree.h TilePosition.h)
+set(SOURCE_FILES main.cpp MyBoard.h MyNode.h tree.hh Direction.h MyTree.h TilePosition.h EightPuzzle.cpp stlastar.h fsa.h)
 add_executable(pa1 ${SOURCE_FILES})
