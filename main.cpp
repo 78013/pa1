@@ -12,6 +12,15 @@ void printCurrentTime() {
     std::cout << buf << std::endl;
 }
 
+void printOK() {
+    std::cout << "LGTM: looks good to me" << std::endl;
+}
+
+void printNotOK() {
+    std::cout << "this should  not happen with the current code" << std::endl;
+}
+
+
 int main() {
     printCurrentTime();
     std::vector<std::vector<int>> goal = std::vector<std::vector<int>>(MyBoard::length,
@@ -33,9 +42,18 @@ int main() {
               << std::endl;
     std::cout << "my initial f cost is " << initialNode.getFCost(goal)
               << std::endl;
-    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::down)) {
-        std::cout << "this should  not happen with the current code" << std::endl;
-    } else { std::cout << "LGTM: looks good to me" << std::endl; }
+    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::down)) { printNotOK(); }
+    else { printOK(); }
+
+    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::up)) { printOK(); }
+    else { printNotOK(); }
+
+    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::left)) { printOK(); }
+    else { printNotOK(); }
+
+    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::right)) { printNotOK(); }
+    else { printOK(); }
+
     if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::up)) {
         std::vector<std::vector<int>> newBoard = initialNode.myBoard.moveTo(Direction::up);
         initialNode.myBoard.printBoard(newBoard);
