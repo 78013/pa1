@@ -14,17 +14,17 @@ void printCurrentTime() {
 
 int main() {
     printCurrentTime();
-    MyNode initialNode;
     std::vector<std::vector<int>> goal = std::vector<std::vector<int>>(MyBoard::length,
                                                                        std::vector<int>(MyBoard::width));
     goal = {{1, 2, 3},
             {8, 0, 4},
             {7, 6, 5}};
+    MyNode initialNode;
     initialNode.myBoard.current = {{1, 3, 4},
                                    {8, 6, 2},
                                    {7, 5, 0}};
     initialNode.myBoard.printBoard(goal);
-    if (!initialNode.myBoard.isCurrentGoal(goal)) {
+    if (!initialNode.myBoard.isSolved(goal)) {
         initialNode.myBoard.printBoard(initialNode.myBoard.current);
     }
     std::pair<int, int> x = initialNode.myBoard.getBlankTilePosition();
@@ -40,5 +40,5 @@ int main() {
         std::vector<std::vector<int>> newBoard = initialNode.myBoard.moveTo(Direction::up);
         initialNode.myBoard.printBoard(newBoard);
     }
-        printCurrentTime();
+    printCurrentTime();
 }

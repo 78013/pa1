@@ -28,7 +28,7 @@ public:
         }
     }
 
-    bool isCurrentGoal(std::vector<std::vector<int>> goal) {
+    bool isSolved(std::vector<std::vector<int>> goal) {
         for (int row = 0; row < length; row++) {
             for (int column = 0; column < width; column++) {
                 if (current[row][column] != goal[row][column]) {
