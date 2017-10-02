@@ -31,7 +31,7 @@ int main() {
     MyNode initialNode;
     initialNode.myBoard.current = {{1, 3, 4},
                                    {8, 6, 2},
-                                   {7, 5, 0}};
+                                   {7, 0, 5}};
     initialNode.myBoard.printBoard(goal);
     if (!initialNode.myBoard.isSolved(goal)) {
         initialNode.myBoard.printBoard(initialNode.myBoard.current);
@@ -51,8 +51,8 @@ int main() {
     if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::left)) { printOK(); }
     else { printNotOK(); }
 
-    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::right)) { printNotOK(); }
-    else { printOK(); }
+    if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::right)) { printOK(); }
+    else { printNotOK(); }
 
     if (initialNode.myBoard.canMoveTo(initialNode.myBoard.getBlankTilePosition(), Direction::up)) {
         std::vector<std::vector<int>> newBoard = initialNode.myBoard.moveTo(Direction::up);
